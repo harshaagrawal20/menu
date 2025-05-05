@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Diamond Plate - Catering Menu (8 May)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Light Theme Styles */
+        :root {
+            --primary: #4CAF50;
+            --primary-light: #81C784;
+            --dark: #222;
+            --light: #f9f9f9;
+            --white: #fff;
+            --gray: #666;
+            --light-gray: #eee;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .header {
+            background-color: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            position: relative;
+            background-image: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+                              url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+        }
+
+        /* Date Ribbon */
+        .date-ribbon {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 8px 25px;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-weight: bold;
+            clip-path: polygon(0 0, 100% 0, 95% 50%, 100% 100%, 0 100%, 5% 50%);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+
+        /* Diamond Logo */
+        .logo-container {
+            text-align: center;
+            padding: 40px 0 25px;
+            position: relative;
+        }
+        
+        .diamond {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.05) 100%);
+            transform: rotate(45deg);
+            margin: 0 auto 25px;
+            border: 2px solid var(--primary-light);
+            box-shadow: 0 0 25px rgba(76, 175, 80, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .diamond:hover {
+            transform: rotate(45deg) scale(1.05);
+            box-shadow: 0 0 30px rgba(76, 175, 80, 0.3);
+        }
+        
+        .diamond:before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 55%
+            );
+            animation: shine 3s infinite;
+        }
+        
+        /* Image inside diamond */
+        .diamond-image {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            top: 20px;
+            left: 20px;
+            transform: rotate(-45deg);
+            object-fit: contain;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+        }
+        
+        @keyframes shine {
+            0% { transform: translate(-30%, -30%); }
+            100% { transform: translate(30%, 30%); }
+        }
+        
+        .main-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .main-text:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--gray);
+            letter-spacing: 1.5px;
+            font-style: italic;
+            margin-top: 15px;
+            display: inline-block;
+            background: rgba(255,255,255,0.7);
+            padding: 8px 20px;
+            border-radius: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Contact Bar */
+        .contact-bar {
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            color: var(--white);
+            text-align: center;
+            padding: 12px;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-bar a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            background: rgba(0,0,0,0.1);
+            padding: 3px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-bar a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Menu Styles */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .menu-section {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            background-image: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+                              url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+        }
+
+        .menu-section:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--primary-light));
+        }
+
+        h2 {
+            color: var(--dark);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin: 0 0 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+            position: relative;
+        }
+
+        h2:after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+        }
+
+        .menu-category {
+            margin-bottom: 35px;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .category-title:before {
+            content: "";
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            margin-right: 12px;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 5px rgba(76, 175, 80, 0.3);
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .menu-item {
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            background-color: var(--white);
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--light-gray);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
+        }
+
+        .menu-item:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.03) 0%, rgba(76, 175, 80, 0) 100%);
+            z-index: 0;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .item-name:after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .item-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--gray);
+            font-size: 0.95rem;
+            background-color: var(--white);
+            border-top: 1px solid var(--light-gray);
+            box-shadow: 0 -3px 10px rgba(0,0,0,0.03);
+            background-image: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+                              url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+        }
+
+        .footer p {
+            margin: 8px 0;
+        }
+
+        .footer strong {
+            color: var(--primary);
+        }
+
+        /* Decorative elements */
+        .leaf-decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .leaf-1 {
+            top: 50px;
+            right: 50px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%234CAF50" d="M50,0 C60,30 80,40 100,30 C90,60 70,70 50,100 C30,70 10,60 0,30 C20,40 40,30 50,0 Z"/></svg>');
+            background-size: contain;
+            transform: rotate(30deg);
+        }
+
+        .leaf-2 {
+            bottom: 30px;
+            left: 40px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%234CAF50" d="M50,0 C60,30 80,40 100,30 C90,60 70,70 50,100 C30,70 10,60 0,30 C20,40 40,30 50,0 Z"/></svg>');
+            background-size: contain;
+            transform: rotate(-15deg) scale(0.8);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-text {
+                font-size: 2.2rem;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .date-ribbon {
+                top: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+                padding: 5px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="date-ribbon">8 MAY</div>
+        <div class="logo-container">
+            <div class="diamond">
+                <img src="image.png" alt="Diamond Plate Logo" class="diamond-image">
+            </div>
+            <div class="main-text">THE DIAMOND PLATE</div>
+            <div class="tagline">U NAME IT WE PLATE IT</div>
+        </div>
+    </div>
+
+    <div class="contact-bar">
+        Catering Date: <strong>8 May</strong> | Contact: <a href="tel:8005814974">8005814974</a>
+    </div>
+
+    <div class="content">
+        <div class="menu-section">
+            <div class="leaf-decoration leaf-1"></div>
+            <div class="leaf-decoration leaf-2"></div>
+            
+            <h2>Snake & Spice Fusion Menu</h2>
+
+            <div class="menu-category">
+                <div class="category-title">SNACKS</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-name">Cheese Tikki</div>
+                        <div class="item-desc">Potato and cheese patties shaped like snakes, crispy on the outside.</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Cheese Sigar Roll</div>
+                        <div class="item-desc">Thin, crunchy rolls filled with melted cheese. Comes with spicy red sauce.</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Cheese Ball</div>
+                        <div class="item-desc">Round cheese snacks with pattern. Filled with jalapeño and herbs.</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Kanjol Pokit</div>
+                        <div class="item-desc">Spicy stuffed pockets with seasoning and tamarind (imli) chutney.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <div class="category-title">STALL SPECIALTIES</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-name">Gravy Manchurian</div>
+                        <div class="item-desc">Fried veggie balls in tasty Chinese-style gravy with ginger and garlic.</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Fried Rice</div>
+                        <div class="item-desc">Fried rice with colorful veggies.</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Pasta (Red & White sauce)</div>
+                        <div class="item-desc">Two pastas: creamy white and spicy red. </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Chaoumin</div>
+                        <div class="item-desc">Fried noodles with veggies and Chinese-style spices.</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Paneer Tikka Jaipuri</div>
+                        <div class="item-desc">Grilled paneer in rich Rajasthani-style gravy with strong spices.</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Paneer Tikka Achari</div>
+                        <div class="item-desc">Paneer with pickle-style taste, made using mustard oil and spices.</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Pineapple Tikka</div>
+                        <div class="item-desc">Grilled pineapple with sweet and spicy taste. Comes with mint yogurt dip.</div>
+                    </div>
+                </div>
+            </div>
+            
+    
+</body>
+</html>
